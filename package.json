@@ -1,0 +1,22 @@
+{
+  "name": "greetme",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/stall84/greetMe_Lambda.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/stall84/greetMe_Lambda/issues"
+  },
+  "homepage": "https://github.com/stall84/greetMe_Lambda#readme",
+  "dependencies": {
+    "moment": "^2.29.1"
+  }
+}

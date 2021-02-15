@@ -1,15 +1,35 @@
-exports.handler = async (event, context) => {
+// Multilingual Greeting Function For Demo Purposes
+const moment = require('moment');
 
-    // let imgData = event.data;        // example use of event-triggered input data
-    let imgRes = await resizeImage(event);
-    return imgRes;
+const greeting = {
+    "en": "Hello",
+    "fr": "Bonjour",
+    "hi": "Namaste",
+    "es": "Hola",
+    "pt": "Ola",
+    "ur": "Assalammo Aleikum",
+    "it": "Ciao",
+    "de": "Hallo"
 }
 
-const resizeImage = (data) => new Promise((resolve, reject) => {
-    setTimeout(() => {
-        if (!data) {
-            reject(console.error('There was an error resolving the promise'));
-        }
-        resolve(console.log('Function Resolved Successfully!!  ' + data.toString()));
-    }, 2000);
-});
+exports.handler = async (event) => {
+    let name = event.pathParameters.name;   // Get the user's name passed in via path params
+    let { lang, ...info } = event.queryStringParameters;    // Destructure out language key and anything 
+                                                            // else as info from query params
+    let message = `${greeting[lang] ? greeting[lang] : greeting["en"]} ${name}`;
+    let response = {
+        message: message,
+        info: info,
+        timestamp: moment().unix()
+    }
+
+    return {
+        statusCode: 200,
+        body: JSON.stringify(response)
+    }
+
+}                                                          
+
+
+
+    
